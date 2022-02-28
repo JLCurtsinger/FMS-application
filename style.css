@@ -1,0 +1,40 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+.game_button {
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 30px;
+  box-shadow: 5px 2px 2px;
+  width: 250px;
+  text-align: center;
+}
+
+.menu_button {
+  border: 1px solid grey;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 30px;
+  box-shadow: 5px 2px 2px;
+  width: 100px;
+  text-align: center;
+}
+
+.menu_button:hover,
+.game_button:hover {
+  cursor: pointer;
+}
+.game_button:active,
+.menu_button:active {
+  transform: translate(5px, 5px);
+}
