@@ -1,3 +1,5 @@
+let i = 0;
+
 function popTheBubbles() {
   noStroke();
   fill("#9AEFFF");
@@ -13,12 +15,16 @@ function popTheBubbles() {
 
   fill("black");
   text("TODO: Pop The Bubbles", width / 2 - 125, height / 2 - 220);
-  fill("white");
-  stroke("black");
-  rect(windowWidth / 4, windowHeight / 4, windowWidth / 2, windowHeight / 2);
 
-  //let circle1 = circle(350, 300, 35);
-  // strokeWeight(35);
-  // stroke(69, 63, 252);
-  // point(mouseX, mouseY);
+  strokeWeight(5);
+  stroke(69, 63, 252);
+  point(mouseX, mouseY);
+
+  if (i < 20) {
+    let x = random(50, windowWidth - 150);
+    let y = random(180, windowHeight - 200);
+    let r = 35;
+    circle(x, y, r);
+    i += 1;
+  }
 }
