@@ -1,38 +1,52 @@
 let currentScene = "main";
+let changeToWhiteBG = true;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  background(220);
-
   if (currentScene === "main") {
     mainScreen();
   }
   if (currentScene === "menu") {
+    if (changeToWhiteBG) {
+      background(255, 255, 255);
+      changeToWhiteBG = false;
+    }
     showMenu();
-    exitButton();
   }
   if (currentScene === "game_1") {
+    if (changeToWhiteBG) {
+      background(255, 255, 255);
+      changeToWhiteBG = false;
+    }
     drawShape();
-    exitButton();
   }
   if (currentScene === "game_2") {
+    if (changeToWhiteBG) {
+      background(255, 255, 255);
+      changeToWhiteBG = false;
+    }
     typingGame();
-    exitButton();
   }
   if (currentScene === "game_3") {
+    if (changeToWhiteBG) {
+      background(255, 255, 255);
+      changeToWhiteBG = false;
+    }
     clickAndDrag();
-    exitButton();
   }
   if (currentScene === "game_4") {
+    if (changeToWhiteBG) {
+      background(255, 255, 255);
+      changeToWhiteBG = false;
+    }
     popTheBubbles();
-    exitButton();
   }
 
-  fill("black");
-  text(`${mouseX}, ${mouseY}`, 100, 100);
+  // fill("black");
+  // text(`${mouseX}, ${mouseY}`, 100, 100);
 }
 
 function mouseClicked() {
@@ -94,6 +108,7 @@ function mouseClicked() {
       mouseY <= 25 + 40
     ) {
       currentScene = "main";
+      changeToWhiteBG = true;
     }
   }
 }
@@ -104,3 +119,11 @@ const exitButton = () => {
   fill("black");
   text("EXIT", 75, 50);
 };
+
+// const backgroundSwitcher = (flag) => {
+//   if (changeToWhiteBG) {
+//     background(255, 255, 255);
+//     changeToWhiteBG = flag;
+//   }
+//   changeToWhiteBG = false
+// };

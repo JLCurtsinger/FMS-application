@@ -11,5 +11,9 @@ const clickAndDrag = () => {
   text("Score : ", windowWidth / 2 - 10, windowHeight / 1 / 8 - 50);
   text("Exit", windowWidth / 1 / 25, windowHeight / 1 / 8 - 50);
 
-  text("TODO: Click and Drag", width / 2 - 125, height / 2 - 200);
+  fill("black");
+  text("TODO: Click and Drag", width / 2 - 125, height / 2 - 220);
+  fill("white");
+  stroke("black");
+  rect(windowWidth / 4, windowHeight / 4, windowWidth / 2, windowHeight / 2);
 };

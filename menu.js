@@ -8,8 +8,8 @@ const showMenu = () => {
   fill("white");
   textAlign(CENTER);
   textSize(40);
-  text("Score : ", windowWidth / 2 - 10, windowHeight / 1 / 8 - 50);
   text("Exit", windowWidth / 1 / 25, windowHeight / 1 / 8 - 50);
 
+  fill("black");
   text("TODO: Menu", width / 2 - 50, height / 2 - 200);
 };
