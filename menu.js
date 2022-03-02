@@ -1,4 +1,4 @@
-function popTheBubbles() {
+const showMenu = () => {
   noStroke();
   fill("#9AEFFF");
   //Main Bar
@@ -11,9 +11,5 @@ function popTheBubbles() {
   text("Score : ", windowWidth / 2 - 10, windowHeight / 1 / 8 - 50);
   text("Exit", windowWidth / 1 / 25, windowHeight / 1 / 8 - 50);
 
-  text("TODO: Pop The Bubbles", width / 2 - 125, height / 2 - 200);
-  //let circle1 = circle(350, 300, 35);
-  strokeWeight(35);
-  stroke(69, 63, 252);
-  point(mouseX, mouseY);
-}
+  text("TODO: Menu", width / 2 - 50, height / 2 - 200);
+};

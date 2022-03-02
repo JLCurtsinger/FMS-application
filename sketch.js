@@ -15,6 +15,7 @@ function draw() {
     exitButton();
   }
   if (currentScene === "game_1") {
+    drawShape();
     exitButton();
   }
   if (currentScene === "game_2") {
@@ -22,11 +23,11 @@ function draw() {
     exitButton();
   }
   if (currentScene === "game_3") {
-    text("TODO: Click And Drag", width / 2 - 125, height / 2 - 200);
+    clickAndDrag();
     exitButton();
   }
   if (currentScene === "game_4") {
-    text("TODO: Pop The Bubbles", width / 2 - 125, height / 2 - 200);
+    popTheBubbles();
     exitButton();
   }
 
@@ -102,8 +103,4 @@ const exitButton = () => {
   rect(30, 25, 90, 40);
   fill("black");
   text("EXIT", 75, 50);
-};
-
-const showMenu = () => {
-  text("TODO: Menu", width / 2 - 50, height / 2 - 200);
 };
