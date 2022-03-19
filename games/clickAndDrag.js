@@ -24,38 +24,72 @@ const clickAndDrag = () => {
     rect(windowWidth / 4, windowHeight / 4, windowWidth / 2, windowHeight / 2);
   }
 
+  // Code for the game
+  // If statement on what to do when the user is not the said line
+  if (mouseIsPressed) {
+    fill("red");
+    rect(windowWidth / 4, windowHeight / 4, windowWidth / 2, windowHeight / 2);
+  }
+
+  // If statement on what to do when the user is on the said line
   if (mouseIsPressed) {
     if (mouseX >= windowWidth / 4 + 10 && mouseX <= windowWidth / 2 + 70)
       if (mouseY >= windowHeight / 4 + 90 && mouseY <= windowHeight / 1 + 70)
         fill("green");
     rect(windowWidth / 4, windowHeight / 4, windowWidth / 2, windowHeight / 2);
+    circle(mouseX, mouseY, 50);
     if (mouseX <= windowHeight / 2 - 25 && mouseX >= windowWidth / 4 + 25) {
-      circle(mouseX, mouseY, 50);
+      fill("black");
+      circle(windowWidth / 2, windowHeight / 2, 50);
     }
-  } else {
-    //circle()
-    line(
-      windowWidth / 4 + 10,
-      windowHeight / 4 + 90,
-      windowWidth / 2 + 70,
-      windowHeight / 2 + 70
-    );
+  }
+
+  //What to do when mouse not pressed
+  else {
     fill("blue");
     rect(windowWidth / 4, windowHeight / 4, windowWidth / 2, windowHeight / 2);
     strokeWeight(10);
-    stroke("green");
+    circle(windowWidth / 2, windowHeight / 2, 50);
+    circle(windowWidth / 3, windowHeight / 2, 50);
+    stroke("red");
   }
 
-  line(
-    windowWidth / 4 + 10,
-    windowHeight / 4 + 90,
-    windowWidth / 2 + 70,
-    windowHeight / 2 + 70
-  );
+  //Line measurements
   line(
     windowWidth / 2 + 70,
     windowHeight / 2 + 70,
-    windowWidth / -70 + 70,
-    windowHeight / 0.25 + 70
+    windowWidth / 2 + 70,
+    windowHeight / 3.5 + 70
+  ); //line on the right
+  line(
+    windowWidth / 2 + 70,
+    windowHeight / 3.5 + 70,
+    windowWidth / 3.65,
+    windowHeight / 2.75
+  ); //top line
+  line(
+    windowWidth / 4.35 + 70,
+    windowHeight / 2.75 + 70,
+    windowWidth / 2.45 + 85,
+    windowHeight / 2.45 + 85
+  );
+  line(windowWidth / 2, windowHeight / 2, windowWidth / 3.25, windowHeight / 2); // line middle
+  line(
+    windowWidth / 2,
+    windowHeight / 2,
+    windowWidth / 2 + 70,
+    windowHeight / 2 + 70
+  ); // line bent down
+  line(
+    windowWidth / 3.65,
+    windowHeight / 2.75,
+    windowWidth / 4.35 + 70,
+    windowHeight / 2.75 + 70
+  ); //line on the left
+  line(
+    windowWidth / 4.35 + 70,
+    windowHeight / 2 + 70,
+    windowWidth / 2 + 70,
+    windowHeight / 1.75 + 70
   );
 };
