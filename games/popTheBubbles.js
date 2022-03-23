@@ -1,82 +1,58 @@
-let middleX;
-let middleY;
-let gameAreaXClose;
-let gameAreaXFar;
-let gameAreaYClose;
-let gameAreaYFar;
-let mousePressedTrue = false;
-let firstPoint = false;
-let secondPoint = false;
-let thirdPoint = false;
-let i = 0;
-let bubbles = [];
-let numBubbles = 20;    // number of bubbles to display
-let score = 0;
- 
-function setup() {
- createCanvas(windowWidth, windowHeight);
- middleX = windowWidth / 2;
- middleY = windowHeight / 2;
- gameAreaYClose = windowWidth / 4;
- gameAreaYFar = windowWidth / 3/4;
- gameAreaXClose = windowHeight / 4;
- gameAreaXFar = windowHeight / 3/4;
+const bubbleVars = {
+  mousePressedTrue: false,
+  firstPoint: false,
+  secondPoint: false,
+  thirdPoint: false,
+  // i: 0,
+  bubbles: [],
+  numBubbles: 20, // number of bubbles to display
+  score: 0,
+  generate: true,
+};
 
- //create bubbles  (number of bubbles created = numBubbles)
- for (let i = 0; i < numBubbles; i++) {
-   let x = random(150, windowWidth - 150);
-   let y = random(210, windowHeight - 190);
-   let radius = 60;
-   bubbles[i] = new Bubble(x, y, radius);
- }
-}
-
-function mousePressed() {
-  for (let i = 0; i < bubbles.length; i++) {
-    bubbles[i].mouseClicked();
+function popTheBubbles() {
+  if (bubbleVars.generate) {
+    for (let i = 0; i < bubbleVars.numBubbles; i++) {
+      let x = random(150, windowWidth - 150);
+      let y = random(210, windowHeight - 190);
+      let radius = 60;
+      bubbleVars.bubbles[i] = new Bubble(x, y, radius);
+    }
+    bubbleVars.generate = false;
   }
-}
-
-function draw() {
   noStroke();
   fill("#9AEFFF");
   //Main Bar
-  rect(0,0, windowWidth, windowHeight / 1/8);
+  rect(0, 0, windowWidth, windowHeight / 1 / 8);
   //Restart Button
-  rect(10, windowHeight - 120, windowWidth / 1/10, windowHeight / 1/10, 20);
+  rect(10, windowHeight - 120, windowWidth / 1 / 10, windowHeight / 1 / 10, 20);
   fill(250, 254, 255);
   stroke("#1E1B1B");
   strokeWeight(5);
   textAlign(CENTER);
   textSize(40);
-  text("Score : " + score, windowWidth / 2.1, windowHeight / 1/12);
-  text("Exit", windowWidth / 1/25, windowHeight / 1/12);
-  
+  text("Score : " + bubbleVars.score, windowWidth / 2.1, windowHeight / 1 / 12);
+  text("Exit", windowWidth / 1 / 25, windowHeight / 1 / 12);
+
   //Text Above Play Area
   strokeWeight(1);
   fill("#1E1B1B");
-  text("Pop the bubbles", windowWidth / 2,windowHeight / 1/5 );
+  text("Pop the bubbles", windowWidth / 2, windowHeight / 1 / 5);
 
   fill("#9AEFFF");
   strokeWeight(4);
-  stroke(69, 63,252);
+  stroke(69, 63, 252);
 
   //display bubbles
-  for (let i = 0; i < numBubbles; i++) {
-    bubbles[i].display();
+  for (let i = 0; i < bubbleVars.numBubbles; i++) {
+    bubbleVars.bubbles[i].display();
   }
-  }
+}
 
-function traceTriangle() {
-if (mousePressedTrue == true && mouseX <=  windowWidth / 1.38 & mouseX >= windowWidth - (windowWidth / 1.36) & mouseY <= windowHeight / 1.38 & mouseY >= windowHeight - (windowHeight / 1.38) && mousePressedTrue == true) {
-  
-  fill("Black");
-  stroke("Black");
-  noStroke();
-  ellipse(mouseX, mouseY, 30, 30);
+function mousePressed() {
+  for (let i = 0; i < bubbleVars.bubbles.length; i++) {
+    bubbleVars.bubbles[i].mouseClicked();
   }
-
-  else {}
 }
 
 class Bubble {
@@ -92,13 +68,14 @@ class Bubble {
     strokeWeight(4);
     fill(this.col);
     ellipse(this.x, this.y, this.r);
-  } 
+  }
 
   mouseClicked() {
     let distance = dist(mouseX, mouseY, this.x, this.y);
-    if (distance < 30) {    // 30 is half the radius of a bubble
+    if (distance < 30) {
+      // 30 is half the radius of a bubble
       this.col = color("#00FF9A");
-      score += 1;
-    }  
+      bubbleVars.score += 1;
+    }
   }
 }

@@ -99,6 +99,32 @@ const typingGame = (bell, wrongInput) => {
   }
 
   text(contents, windowWidth / 2, windowHeight / 4 + 150);
+
+  if (mouseIsPressed && frameCount % 7 === 0) {
+    if (
+      mouseX >= windowWidth / 5 - 30 &&
+      mouseX <= windowWidth / 5 + 30 &&
+      mouseY <= windowHeight / 3.4 &&
+      mouseY >= windowHeight / 3.4 - 30
+    ) {
+      if (letterCount < 10) {
+        letterCount++;
+        word = randomLettersFunc(letterCount);
+      }
+    }
+
+    if (
+      mouseX >= windowWidth / 5 - 30 &&
+      mouseX <= windowWidth / 5 + 30 &&
+      mouseY <= windowHeight / 2.2 + 30 &&
+      mouseY >= windowHeight / 2.2
+    ) {
+      if (letterCount > 3) {
+        letterCount--;
+        word = randomLettersFunc(letterCount);
+      }
+    }
+  }
 };
 
 function keyTyped() {
@@ -158,31 +184,31 @@ function keyReleased() {
   }
 }
 
-function mousePressed() {
-  if (
-    mouseX >= windowWidth / 5 - 30 &&
-    mouseX <= windowWidth / 5 + 30 &&
-    mouseY <= windowHeight / 3.4 &&
-    mouseY >= windowHeight / 3.4 - 30
-  ) {
-    if (letterCount < 10) {
-      letterCount++;
-      word = randomLettersFunc(letterCount);
-    }
-  }
+// function mouseClicked() {
+//   if (
+//     mouseX >= windowWidth / 5 - 30 &&
+//     mouseX <= windowWidth / 5 + 30 &&
+//     mouseY <= windowHeight / 3.4 &&
+//     mouseY >= windowHeight / 3.4 - 30
+//   ) {
+//     if (letterCount < 10) {
+//       letterCount++;
+//       word = randomLettersFunc(letterCount);
+//     }
+//   }
 
-  if (
-    mouseX >= windowWidth / 5 - 30 &&
-    mouseX <= windowWidth / 5 + 30 &&
-    mouseY <= windowHeight / 2.2 + 30 &&
-    mouseY >= windowHeight / 2.2
-  ) {
-    if (letterCount > 3) {
-      letterCount--;
-      word = randomLettersFunc(letterCount);
-    }
-  }
-}
+//   if (
+//     mouseX >= windowWidth / 5 - 30 &&
+//     mouseX <= windowWidth / 5 + 30 &&
+//     mouseY <= windowHeight / 2.2 + 30 &&
+//     mouseY >= windowHeight / 2.2
+//   ) {
+//     if (letterCount > 3) {
+//       letterCount--;
+//       word = randomLettersFunc(letterCount);
+//     }
+//   }
+// }
 
 // Function returns a string of randomized letter with a desired length passed as argument
 const randomLettersFunc = (lengthOfString) => {
