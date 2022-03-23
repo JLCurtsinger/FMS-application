@@ -1,8 +1,12 @@
-let currentScene = "main";
+let currentScene = "game_2";
 let changeToWhiteBG = true;
+let bell;
+let wrongInput;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  bell = loadSound("games/assets/bell.mp3");
+  wrongInput = loadSound("games/assets/wrong.wav");
 }
 
 function draw() {
@@ -28,7 +32,7 @@ function draw() {
       background(255, 255, 255);
       changeToWhiteBG = false;
     }
-    typingGame();
+    typingGame(bell, wrongInput);
   }
   if (currentScene === "game_3") {
     if (changeToWhiteBG) {
@@ -119,11 +123,3 @@ const exitButton = () => {
   fill("black");
   text("EXIT", 75, 50);
 };
-
-// const backgroundSwitcher = (flag) => {
-//   if (changeToWhiteBG) {
-//     background(255, 255, 255);
-//     changeToWhiteBG = flag;
-//   }
-//   changeToWhiteBG = false
-// };
