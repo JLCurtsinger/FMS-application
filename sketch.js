@@ -1,4 +1,4 @@
-let currentScene = "game_2";
+let currentScene = "main";
 let changeToWhiteBG = true;
 let bell;
 let wrongInput;
