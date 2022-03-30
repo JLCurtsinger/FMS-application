@@ -8,9 +8,15 @@ const bubbleVars = {
   numBubbles: 12, // number of bubbles to display
   score: 0,
   generate: true,
+  buzz: null,
+  winnerSound: null,
+  currentScene: null,
 };
 
-function popTheBubbles(bell, wrongInput) {
+function popTheBubbles(buzz, winnerSound) {
+  bubbleVars.buzz = buzz;
+  bubbleVars.winnerSound = winnerSound;
+  bubbleVars.currentScene = currentScene;
   if (bubbleVars.generate) {
     for (let i = 0; i < bubbleVars.numBubbles; i++) {
       let x = random(150, windowWidth - 150);
@@ -58,9 +64,9 @@ function mousePressed() {
 
   if (!hasFalse(arr) && !bubbleVars.generate) {
     background(255, 28, 62, 240);
-    if (buzz.isPlaying()) {
+    if (bubbleVars.buzz.isPlaying()) {
       // .isPlaying() returns a boolean
-      buzz.stop();
+      bubbleVars.buzz.stop();
       background(255, 28, 62, 240);
       text(
         "You missed the bubble. Keep trying!",
@@ -68,7 +74,7 @@ function mousePressed() {
         windowHeight / 1.08
       );
     } else {
-      buzz.play();
+      bubbleVars.buzz.play();
       background(255, 28, 62, 240);
       text(
         "You missed the bubble. Keep trying!",
@@ -84,9 +90,9 @@ function mousePressed() {
   }
 
   if (bubbleVars.score >= bubbleVars.numBubbles) {
-    if (winnerSound.isPlaying()) {
+    if (bubbleVars.winnerSound.isPlaying()) {
       // .isPlaying() returns a boolean
-      winnerSound.stop();
+      bubbleVars.winnerSound.stop();
       background(0, 255, 154, 100);
       text(
         "Congratulations, you popped the bubbles!",
@@ -94,7 +100,7 @@ function mousePressed() {
         windowHeight / 1.22
       );
     } else {
-      winnerSound.play();
+      bubbleVars.winnerSound.play();
       background(0, 255, 154, 100);
       text(
         "Congratulations, you popped the bubbles!",

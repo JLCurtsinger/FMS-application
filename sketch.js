@@ -43,14 +43,14 @@ function draw() {
       background(255, 255, 255);
       changeToWhiteBG = false;
     }
-    clickAndDrag();
+    clickAndDrag(bell, wrongInput);
   }
   if (currentScene === "game_4") {
     if (changeToWhiteBG) {
       background(255, 255, 255);
       changeToWhiteBG = false;
     }
-    popTheBubbles(buzz, winnerSound);
+    popTheBubbles(buzz, winnerSound, currentScene);
   }
 
   // fill("black");
@@ -117,6 +117,7 @@ function mouseClicked() {
     ) {
       currentScene = "main";
       changeToWhiteBG = true;
+      window.location.reload(true);
     }
   }
 }
