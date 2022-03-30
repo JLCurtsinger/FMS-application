@@ -50,55 +50,64 @@ function popTheBubbles(bell, wrongInput) {
 }
 
 function mousePressed() {
-<<<<<<< Updated upstream
-  if (bubbleVars.bubbles.length === 0) {
-    for (let i = 0; i < bubbleVars.bubbles.length; i++) {
-      bubbleVars.bubbles[i].mouseClicked();
-    }
-=======
-  const arr = []
+  const arr = [];
   let count = 0;
   for (let i = 0; i < bubbleVars.bubbles.length; i++) {
     arr.push(bubbleVars.bubbles[i].mouseClicked());
->>>>>>> Stashed changes
   }
 
   if(!hasFalse(arr)){
-    background(255, 28, 62, 240)
-    text('You missed the bubble. Keep trying!', windowWidth / 2, windowHeight / 1.08);
+    background(255, 28, 62, 240);
+    if (buzz.isPlaying()) {
+      // .isPlaying() returns a boolean
+      buzz.stop();
+      background(255, 28, 62, 240);
+      text('You missed the bubble. Keep trying!', windowWidth / 2, windowHeight / 1.08);
+    } else {
+      buzz.play();
+      background(255, 28, 62, 240);
+      text('You missed the bubble. Keep trying!', windowWidth / 2, windowHeight / 1.08);
+    }
 
   }
 
-  if(hasFalse(arr)){
+  if (hasFalse(arr)) {
     background(240, 250, 255); //refreshes background as white
     count = count + 1;
   }
 
   if(bubbleVars.score >= bubbleVars.numBubbles) {
-    text('Congratulations, you popped the bubbles!', windowWidth / 2, windowHeight / 1.22);
-    background(0, 255, 154, 100);
+    if (winnerSound.isPlaying()) {
+      // .isPlaying() returns a boolean
+      winnerSound.stop();
+      background(0, 255, 154, 100);
+      text('Congratulations, you popped the bubbles!', windowWidth / 2, windowHeight / 1.22);
+    } else {
+      winnerSound.play();
+      background(0, 255, 154, 100);
+      text('Congratulations, you popped the bubbles!', windowWidth / 2, windowHeight / 1.22);
+    }
   }
-
 }
 
 // This function looks through an array of boolean values and returns true if at least one value is false
-function findTruth(arr){
-  for(let i = 0; i < arr.length; i++){
-    if(arr[i] === false){
-      return true
+function findTruth(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === false) {
+      return true;
     }
   }
-  return false
+  return false;
 }
 
 // This function looks through an array of boolean values and returns true if at least one value is true
-function hasFalse(arr){
-  for(let i = 0; i < arr.length; i++){
-    if(arr[i] === true){
-      return true
+function hasFalse(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === true) {
+      return true;
     }
   }
-  return false
+  return false;
 }
 
 class Bubble {
@@ -122,8 +131,8 @@ class Bubble {
       // 30 is half the radius of a bubble
       this.col = color("#00FF9A");
       bubbleVars.score += 1;
-      return true
+      return true;
     }
-    return false
+    return false;
   }
 }

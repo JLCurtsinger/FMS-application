@@ -1,12 +1,16 @@
-let currentScene = "game_4";
+let currentScene = "main";
 let changeToWhiteBG = true;
 let bell;
+let buzz;
 let wrongInput;
+let winnerSound;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   bell = loadSound("games/assets/bell.mp3");
   wrongInput = loadSound("games/assets/wrong.wav");
+  buzz = loadSound("games/assets/buzzSound.mp3");
+  winnerSound = loadSound("games/assets/successSound.wav");
 }
 
 function draw() {
@@ -46,7 +50,7 @@ function draw() {
       background(255, 255, 255);
       changeToWhiteBG = false;
     }
-    popTheBubbles(bell, wrongInput);
+    popTheBubbles(buzz, winnerSound);
   }
 
   // fill("black");
