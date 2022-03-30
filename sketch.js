@@ -1,4 +1,4 @@
-let currentScene = "main";
+let currentScene = "game_4";
 let changeToWhiteBG = true;
 let bell;
 let wrongInput;
@@ -46,7 +46,7 @@ function draw() {
       background(255, 255, 255);
       changeToWhiteBG = false;
     }
-    popTheBubbles();
+    popTheBubbles(bell, wrongInput);
   }
 
   // fill("black");
