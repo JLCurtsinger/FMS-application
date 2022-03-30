@@ -50,8 +50,10 @@ function popTheBubbles() {
 }
 
 function mousePressed() {
-  for (let i = 0; i < bubbleVars.bubbles.length; i++) {
-    bubbleVars.bubbles[i].mouseClicked();
+  if (bubbleVars.bubbles.length === 0) {
+    for (let i = 0; i < bubbleVars.bubbles.length; i++) {
+      bubbleVars.bubbles[i].mouseClicked();
+    }
   }
 }
 
