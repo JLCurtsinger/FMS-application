@@ -4,6 +4,7 @@ let nextWord = true;
 let word = "";
 let shake = false;
 let letterCount = 5;
+let highScore = 0;
 
 let keyboardKeys = {
   q: "white",
@@ -35,6 +36,14 @@ let keyboardKeys = {
 };
 
 const typingGame = (bell, wrongInput) => {
+  // Retrieves high score form local storage
+  let highScore_fromStorage = localStorage.getItem("highScore_typing");
+
+  // Check if value from local storage exists
+  if (highScore_fromStorage != null) {
+    highScore = highScore_fromStorage;
+  }
+
   background(255, 255, 255);
 
   if (frameCount % 60 === 0) {
@@ -65,10 +74,14 @@ const typingGame = (bell, wrongInput) => {
   fill("white");
   textAlign(CENTER);
   textSize(40);
-  text("Typing: ", windowWidth / 2 - 10, windowHeight / 1 / 8 - 50);
+  text("Score: ", windowWidth / 2 - 250, windowHeight / 1 / 8 - 50);
 
   textAlign(LEFT);
-  text(scoresTyping, windowWidth / 2 + 70, windowHeight / 1 / 8 - 50);
+  text(scoresTyping, windowWidth / 2 - 190, windowHeight / 1 / 8 - 50);
+
+  text("Highscore: ", windowWidth / 2 + 100, windowHeight / 1 / 8 - 50);
+  textAlign(LEFT);
+  text(highScore, windowWidth / 2 + 300, windowHeight / 1 / 8 - 50);
 
   textAlign(CENTER);
   text("Exit", windowWidth / 1 / 25, windowHeight / 1 / 8 - 50);
@@ -142,6 +155,10 @@ function keyTyped() {
       // play bell sound defined in sketch.js
       if (!bell.isPlaying()) {
         bell.play();
+      }
+
+      if (highScore < scoresTyping) {
+        localStorage.setItem("highScore_typing", scoresTyping);
       }
     } else {
       shake = true;
