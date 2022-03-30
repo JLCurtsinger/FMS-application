@@ -56,19 +56,26 @@ function mousePressed() {
     arr.push(bubbleVars.bubbles[i].mouseClicked());
   }
 
-  if(!hasFalse(arr)){
+  if (!hasFalse(arr) && !bubbleVars.generate) {
     background(255, 28, 62, 240);
     if (buzz.isPlaying()) {
       // .isPlaying() returns a boolean
       buzz.stop();
       background(255, 28, 62, 240);
-      text('You missed the bubble. Keep trying!', windowWidth / 2, windowHeight / 1.08);
+      text(
+        "You missed the bubble. Keep trying!",
+        windowWidth / 2,
+        windowHeight / 1.08
+      );
     } else {
       buzz.play();
       background(255, 28, 62, 240);
-      text('You missed the bubble. Keep trying!', windowWidth / 2, windowHeight / 1.08);
+      text(
+        "You missed the bubble. Keep trying!",
+        windowWidth / 2,
+        windowHeight / 1.08
+      );
     }
-
   }
 
   if (hasFalse(arr)) {
@@ -76,16 +83,24 @@ function mousePressed() {
     count = count + 1;
   }
 
-  if(bubbleVars.score >= bubbleVars.numBubbles) {
+  if (bubbleVars.score >= bubbleVars.numBubbles) {
     if (winnerSound.isPlaying()) {
       // .isPlaying() returns a boolean
       winnerSound.stop();
       background(0, 255, 154, 100);
-      text('Congratulations, you popped the bubbles!', windowWidth / 2, windowHeight / 1.22);
+      text(
+        "Congratulations, you popped the bubbles!",
+        windowWidth / 2,
+        windowHeight / 1.22
+      );
     } else {
       winnerSound.play();
       background(0, 255, 154, 100);
-      text('Congratulations, you popped the bubbles!', windowWidth / 2, windowHeight / 1.22);
+      text(
+        "Congratulations, you popped the bubbles!",
+        windowWidth / 2,
+        windowHeight / 1.22
+      );
     }
   }
 }
