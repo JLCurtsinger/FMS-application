@@ -4,6 +4,10 @@ let bell;
 let buzz;
 let wrongInput;
 let winnerSound;
+let ding;
+let win;
+let selectSound;
+let drawSound;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -12,6 +16,11 @@ function setup() {
   buzz = loadSound("games/assets/buzzSound.mp3");
   winnerSound = loadSound("games/assets/successSound.wav");
   bubblePop = loadSound("games/assets/popSound.ogg");
+  // draw shape sounds
+  ding = loadSound("games/assets/ding.mp3");
+  win = loadSound("games/assets/win.mp3");
+  selectSound = loadSound("games/assets/select.mp3");
+  drawSound = loadSound("games/assets/draw.mp3");
 }
 
 function draw() {
@@ -30,7 +39,7 @@ function draw() {
       background(255, 255, 255);
       changeToWhiteBG = false;
     }
-    drawShape();
+    drawShape(ding, win, selectSound, drawSound);
   }
   if (currentScene === "game_2") {
     if (changeToWhiteBG) {
