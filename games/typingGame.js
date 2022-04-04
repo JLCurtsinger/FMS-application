@@ -5,7 +5,7 @@ let word = "";
 let shake = false;
 let letterCount = 5;
 let highScore = 0;
-
+// can't type more than 9 letters
 let keyboardKeys = {
   q: "white",
   w: "white",
@@ -173,7 +173,11 @@ function keyTyped() {
   }
 
   console.log(keyCode);
-  if (contents.length < 9 && key.match(/^[a-zA-Z]+$/) && keyCode != ENTER) {
+  if (
+    contents.length < letterCount + 1 &&
+    key.match(/^[a-zA-Z]+$/) &&
+    keyCode != ENTER
+  ) {
     contents += key.toLowerCase();
     keyboardKeys[key] = "#8BE78A";
   }
