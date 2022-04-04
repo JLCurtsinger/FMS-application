@@ -87,6 +87,8 @@ function mousePressed() {
   if (hasFalse(arr)) {
     background(240, 250, 255); //refreshes background as white
     count = count + 1;
+    bubblePop.setVolume(0.4);
+    bubblePop.play();
   }
 
   if (bubbleVars.score >= bubbleVars.numBubbles) {
@@ -100,7 +102,8 @@ function mousePressed() {
         windowHeight / 1.22
       );
     } else {
-      bubbleVars.winnerSound.play();
+      winnerSound.setVolume(0.4);
+      winnerSound.play();
       background(0, 255, 154, 100);
       text(
         "Congratulations, you popped the bubbles!",

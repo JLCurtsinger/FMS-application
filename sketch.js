@@ -11,6 +11,7 @@ function setup() {
   wrongInput = loadSound("games/assets/wrong.wav");
   buzz = loadSound("games/assets/buzzSound.mp3");
   winnerSound = loadSound("games/assets/successSound.wav");
+  bubblePop = loadSound("games/assets/popSound.ogg");
 }
 
 function draw() {
@@ -50,7 +51,7 @@ function draw() {
       background(255, 255, 255);
       changeToWhiteBG = false;
     }
-    popTheBubbles(buzz, winnerSound, currentScene);
+    popTheBubbles(buzz, winnerSound, bubblePop);
   }
 
   // fill("black");
