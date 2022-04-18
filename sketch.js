@@ -8,6 +8,8 @@ let ding;
 let win;
 let selectSound;
 let drawSound;
+let sadSound;
+let happySound;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -21,6 +23,8 @@ function setup() {
   win = loadSound("games/assets/win.mp3");
   selectSound = loadSound("games/assets/select.mp3");
   drawSound = loadSound("games/assets/draw.mp3");
+  sadSound = loadSound("games/assets/loserSound.wav");
+  happySound = loadSound("games/assets/gameOverWinner.wav");
 }
 
 function draw() {
@@ -60,7 +64,7 @@ function draw() {
       background(255, 255, 255);
       changeToWhiteBG = false;
     }
-    popTheBubbles(buzz, winnerSound, bubblePop);
+    popTheBubbles(buzz, winnerSound, bubblePop, sadSound, happySound);
   }
 
   // fill("black");
