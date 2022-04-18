@@ -143,11 +143,11 @@ function mousePressed() {
     textSize(60);
     text("You popped the bubbles!", windowWidth / 2, windowHeight / 1.22);
   }
-  infoButton();
+  infoButtonBubbleGame();
 }
 
 //    info button
-const infoButton = () => {
+const infoButtonBubbleGame = () => {
   fill("#9AEFFF");
   textAlign(CENTER);
   textSize(40);
