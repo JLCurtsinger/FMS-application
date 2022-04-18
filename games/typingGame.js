@@ -5,6 +5,10 @@ let word = "";
 let shake = false;
 let letterCount = 5;
 let highScore = 0;
+let showInfo = false;
+let infoWindowSize = 0;
+let translateX = 0;
+let translateY = 0;
 // can't type more than 9 letters
 let keyboardKeys = {
   q: "white",
@@ -34,6 +38,9 @@ let keyboardKeys = {
   n: "white",
   m: "white",
 };
+let gameName = "Typing Game";
+let gameNameLimit = 0;
+let typingGameName = true;
 
 const typingGame = (bell, wrongInput) => {
   // Retrieves high score form local storage
@@ -64,14 +71,14 @@ const typingGame = (bell, wrongInput) => {
   noStroke();
   // default values for text
   textSize(12);
-  strokeWeight(1);
+  strokeWeight(3);
 
-  fill("#9AEFFF");
   //Main Bar
+  fill("#9AEFFF");
   rect(0, 0, windowWidth, windowHeight / 1 / 8);
-  //Restart Button
-  // rect(10, windowHeight - 120, windowWidth / 1 / 10, windowHeight / 1 / 10, 20);
+
   fill("white");
+  stroke("black");
   textAlign(CENTER);
   textSize(40);
   text("Score: ", windowWidth / 2 - 250, windowHeight / 1 / 8 - 50);
@@ -86,17 +93,33 @@ const typingGame = (bell, wrongInput) => {
   textAlign(CENTER);
   text("Exit", windowWidth / 1 / 25, windowHeight / 1 / 8 - 50);
 
-  fill("black");
-  text("Typing game", width * 2 - 200, height * 2 - 150);
+  text(gameName.substring(0, gameNameLimit), windowWidth / 2, windowHeight / 5);
+  if (
+    gameName.length > gameNameLimit &&
+    frameCount % 20 == 0 &&
+    typingGameName
+  ) {
+    gameNameLimit++;
+  } else if (gameName.length === gameNameLimit) {
+    typingGameName = false;
+  }
+
+  if (gameNameLimit > 0 && frameCount % 20 == 0 && !typingGameName) {
+    gameNameLimit--;
+  } else if (gameNameLimit === 0) {
+    typingGameName = true;
+  }
+
   fill("white");
   stroke("black");
   rect(windowWidth / 4, windowHeight / 4, windowWidth / 2, windowHeight / 4);
-
+  strokeWeight(1);
   fill("black");
 
   textAlign(CENTER);
 
   text(word, windowWidth / 2, windowHeight / 4 + 70);
+
   difficultyButtons(letterCount);
 
   displayKeyboard(width, height);
@@ -138,6 +161,9 @@ const typingGame = (bell, wrongInput) => {
       }
     }
   }
+
+  //Info button
+  infoButton();
 };
 
 function keyTyped() {
@@ -172,7 +198,6 @@ function keyTyped() {
     }
   }
 
-  console.log(keyCode);
   if (
     contents.length < letterCount + 1 &&
     key.match(/^[a-zA-Z]+$/) &&
@@ -183,6 +208,7 @@ function keyTyped() {
   }
 }
 
+// Difficulty option
 function keyPressed() {
   if (keyCode === UP_ARROW) {
     console.log("Up arrow");
@@ -285,4 +311,93 @@ const difficultyButtons = (initialDif) => {
   text("-", windowWidth / 5, windowHeight / 2.08);
 
   fill("black");
+};
+
+const infoButton = () => {
+  fill("#9AEFFF");
+  textAlign(CENTER);
+  textSize(40);
+  rect(30, windowHeight - 80, 120, 50, 15);
+  fill("black");
+  text("INFO", 90, windowHeight - 40);
+  if (
+    mouseX >= 30 &&
+    mouseX <= 150 &&
+    mouseY >= windowHeight - 80 &&
+    mouseY <= windowHeight - 30 &&
+    mouseIsPressed
+  ) {
+    showInfo = true;
+  }
+
+  if (showInfo) {
+    fill("lightgray");
+    rect(windowWidth / 2 - 400, windowHeight / 2 - 200, 800, 400);
+    fill("black");
+    textAlign(CENTER);
+    text("✕", windowWidth / 2 + 350, windowHeight / 2 - 150);
+    textSize(25);
+    text("How To Play", windowWidth / 2, windowHeight / 2 - 150);
+    textAlign(LEFT);
+    text("Match given prompt", windowWidth / 4, windowHeight / 2 - 100);
+
+    textParser(windowWidth / 4, windowHeight / 2 - 50, [
+      ["Correctly typed letters will be in ", "black"],
+      ["green", "green"],
+    ]);
+    textParser(windowWidth / 4, windowHeight / 2, [
+      ["Incorrectly typed letters will be in ", "black"],
+      ["red ", "red"],
+    ]);
+    textParser(windowWidth / 4, windowHeight / 2 + 50, [
+      ['After you finish typing, press "Enter" to submit', "black"],
+    ]);
+    textParser(windowWidth / 4, windowHeight / 2 + 100, [
+      ["You will be awarded points for each successful prompt", "black"],
+    ]);
+    textParser(windowWidth / 4, windowHeight / 2 + 150, [
+      ["You will lose points if prompt is not matched", "black"],
+    ]);
+
+    if (
+      mouseIsPressed &&
+      mouseX >= windowWidth / 2 + 300 &&
+      mouseX <= windowWidth / 2 + 400 &&
+      mouseY <= windowHeight / 2 - 100 &&
+      mouseY >= windowHeight / 2 - 200
+    ) {
+      showInfo = false;
+    }
+    if (
+      !(
+        mouseX >= windowWidth / 2 - 400 &&
+        mouseX <= windowWidth / 2 - 400 + 800 &&
+        mouseY >= windowHeight / 2 - 200 &&
+        mouseY <= windowHeight / 2 - 200 + 400
+      ) &&
+      !(
+        mouseX >= 30 &&
+        mouseX <= 150 &&
+        mouseY >= windowHeight - 80 &&
+        mouseY <= windowHeight - 30
+      ) &&
+      mouseIsPressed
+    ) {
+      showInfo = false;
+    }
+  }
+};
+
+const textParser = (posX, posY, textArr) => {
+  /*
+    This function takes starting position for the text in the form of posX and posY
+    textArr is an array that contains an array with text and color
+  */
+  let x = posX;
+  for (let words of textArr) {
+    fill(words[1]);
+    text(words[0], x, posY);
+    x += textWidth(words[0]);
+    console.log(textWidth(words[0]));
+  }
 };

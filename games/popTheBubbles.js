@@ -1,4 +1,4 @@
-// reminder: fix the exit and info buttons to where they dont make any sound when clicked. 
+// reminder: fix the exit and info buttons to where they dont make any sound when clicked.
 
 const bubbleVars = {
   mousePressedTrue: false,
@@ -23,8 +23,11 @@ const bubbleVars = {
   showInfo: false,
 };
 
+let direction = 0;
+let translation = -10;
+let reverse = false;
 
-function popTheBubbles(buzz, winnerSound, bubblePop, sadSound, happySound) {
+function popTheBubbles(buzz, winnerSound) {
   bubbleVars.buzz = buzz;
   bubbleVars.winnerSound = winnerSound;
   bubbleVars.bubblePop = bubblePop;
@@ -35,7 +38,7 @@ function popTheBubbles(buzz, winnerSound, bubblePop, sadSound, happySound) {
     for (let i = 0; i < bubbleVars.numBubbles; i++) {
       let x = random(150, windowWidth - 150);
       let y = random(210, windowHeight - 190);
-      bubbleVars.bubbles[i] = new Bubble(x, y, bubbleVars.radius,);
+      bubbleVars.bubbles[i] = new Bubble(x, y, bubbleVars.radius);
     }
     bubbleVars.generate = false;
   }
@@ -61,60 +64,32 @@ function popTheBubbles(buzz, winnerSound, bubblePop, sadSound, happySound) {
   if (bubbleVars.timer > 0) {
     textSize(20);
     strokeWeight(0);
-    text("(+10 points per bubble, get 150 points in " + bubbleVars.timer + " second(s) to win!)", windowWidth / 2, windowHeight / 1 / 8.6);
+    text(
+      "(+10 points per bubble, get 150 points in " +
+        bubbleVars.timer +
+        " second(s) to win!)",
+      windowWidth / 2,
+      windowHeight / 1 / 8.6
+    );
   }
 
   fill("#9AEFFF");
   strokeWeight(4);
   stroke(69, 63, 252);
 
-  fill("black");
-  textSize(50);
-  text(bubbleVars.timer, windowWidth / 1.05, windowHeight / 1 / 12);
-  if (frameCount % 60 == 0 && bubbleVars.timer > 0) {     // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
-    bubbleVars.timer --;
-  }
-  if (bubbleVars.timer == 0) {
-    textSize(110);
-
-    if (bubbleVars.score < bubbleVars.numBubbles * 10) {
-      background(255, 28, 62, 80);
-      text("GAME OVER \n You lost. Try again!", width/2, height / 2);
-
+  // this code shakes
+  if (!reverse) {
+    translation++;
+    if (translation === 10) {
+      reverse = true;
     }
-    else {
-      background(0, 255, 154, 80);
-      text("GAME OVER \n You won!", width/2, height / 2);
+  } else {
+    translation--;
+    if (translation === -10) {
+      reverse = false;
     }
   }
-
-
-  if (bubbleVars.score < bubbleVars.numBubbles * 10 && bubbleVars.timer == 0) {
-    if(bubbleVars.playOnce){
-      bubbleVars.sadSound.setVolume(0.4);
-      bubbleVars.sadSound.play();
-      bubbleVars.playOnce = false;
-    }
-  }
-  else if (bubbleVars.score >= bubbleVars.numBubbles * 10 && bubbleVars.timer == 0) {
-    if (bubbleVars.playOnce) {
-      bubbleVars.happySound.play();
-      bubbleVars.playOnce = false;
-    }
-  }
-
-  if (bubbleVars.timer % 2 == 1 && bubbleVars.timer <= 5) {
-    textSize(33);
-    strokeWeight(1);
-    fill(255, 28, 62);
-    stroke(255, 28, 62);
-    text("Timer:", windowWidth / 1.105, windowHeight / 13.4);
-  }
-  else {
-    textSize(30);
-    strokeWeight(1);
-    text("Timer:", windowWidth / 1.105, windowHeight / 13.4);
-  };
+  translate(translation, 0);
 
   //display bubbles
   for (let i = 0; i < bubbleVars.numBubbles; i++) {
@@ -133,14 +108,25 @@ function mousePressed() {
 
   if (!hasFalse(arr) && !bubbleVars.generate) {
     background(255, 28, 62, 240);
-    bubbleVars.buzz.play();
-    background(255, 28, 62, 240);
-    textSize(50);
-    text(
-      "You missed. Keep trying!",
-      windowWidth / 2,
-      windowHeight / 1.08
-    );
+    if (bubbleVars.buzz.isPlaying()) {
+      // .isPlaying() returns a boolean
+      bubbleVars.buzz.stop();
+      background(255, 28, 62, 240);
+      text(
+        "You missed the bubble. Keep trying!",
+        windowWidth / 2,
+        windowHeight / 1.08
+      );
+      shake = true;
+    } else {
+      bubbleVars.buzz.play();
+      background(255, 28, 62, 240);
+      text(
+        "You missed the bubble. Keep trying!",
+        windowWidth / 2,
+        windowHeight / 1.08
+      );
+    }
   }
 
   if (hasFalse(arr)) {
@@ -148,7 +134,6 @@ function mousePressed() {
     count = count + 1;
     bubblePop.setVolume(0.4);
     bubblePop.play();
-
   }
 
   if (bubbleVars.score >= bubbleVars.numBubbles * 10) {
@@ -156,11 +141,7 @@ function mousePressed() {
     winnerSound.play();
     background(0, 255, 154, 100);
     textSize(60);
-    text(
-      "You popped the bubbles!",
-      windowWidth / 2,
-      windowHeight / 1.22
-    );
+    text("You popped the bubbles!", windowWidth / 2, windowHeight / 1.22);
   }
   infoButton();
 }
@@ -192,7 +173,11 @@ const infoButton = () => {
     text("Pop the bubbles.", windowWidth / 2, windowHeight / 22);
     noStroke();
     textSize(35);
-    text("Click on a bubble to \"pop\" it. \n You get 10 points for each bubble popped. \n Get 150 points total to win! \n \n Justin Curtsinger \n FSE 100 (Intro to Engineering) \n spring 2022", windowWidth / 2, windowHeight / 2 / 1.45);
+    text(
+      'Click on a bubble to "pop" it. \n You get 10 points for each bubble popped. \n Get 150 points total to win! \n \n Justin Curtsinger \n FSE 100 (Intro to Engineering) \n spring 2022',
+      windowWidth / 2,
+      windowHeight / 2 / 1.45
+    );
 
     if (
       mouseIsPressed &&
@@ -243,9 +228,8 @@ function hasFalse(arr) {
   return false;
 }
 
-
 class Bubble {
-  constructor(x, y, r,) {
+  constructor(x, y, r) {
     this.x = x;
     this.y = y;
     this.r = r;
@@ -261,9 +245,13 @@ class Bubble {
 
   mouseClicked() {
     let distance = dist(mouseX, mouseY, this.x, this.y);
-    if (distance < 30) {          // 30 is half the radius of a bubble
+    if (distance < 30) {
+      // 30 is half the radius of a bubble
       this.col = color("#00FF9A");
-      if (bubbleVars.score < bubbleVars.numBubbles * 10 && bubbleVars.timer > 0) {
+      if (
+        bubbleVars.score < bubbleVars.numBubbles * 10 &&
+        bubbleVars.timer > 0
+      ) {
         bubbleVars.score += 10;
       }
       return true;

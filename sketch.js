@@ -31,13 +31,13 @@ function draw() {
   if (currentScene === "main") {
     mainScreen();
   }
-  if (currentScene === "menu") {
-    if (changeToWhiteBG) {
-      background(255, 255, 255);
-      changeToWhiteBG = false;
-    }
-    showMenu();
-  }
+  // if (currentScene === "menu") {
+  //   if (changeToWhiteBG) {
+  //     background(255, 255, 255);
+  //     changeToWhiteBG = false;
+  //   }
+  //   showMenu();
+  // }
   if (currentScene === "game_1") {
     if (changeToWhiteBG) {
       background(255, 255, 255);
@@ -76,52 +76,52 @@ function mouseClicked() {
 
   if (currentScene === "main") {
     if (
-      mouseX >= width / 2 - 150 &&
-      mouseX <= width / 2 - 150 + 200 &&
+      mouseX >= width / 2 - 100 &&
+      mouseX <= width / 2 - 100 + 200 &&
       mouseY >= height / 2 - 230 &&
       mouseY <= height / 2 - 230 + 50
     ) {
       currentScene = "game_1";
     }
     if (
-      mouseX >= width / 2 - 150 &&
-      mouseX <= width / 2 - 150 + 200 &&
+      mouseX >= width / 2 - 100 &&
+      mouseX <= width / 2 - 100 + 200 &&
       mouseY >= height / 2 - 130 &&
       mouseY <= height / 2 - 130 + 50
     ) {
       currentScene = "game_2";
     }
     if (
-      mouseX >= width / 2 - 150 &&
-      mouseX <= width / 2 - 150 + 200 &&
+      mouseX >= width / 2 - 100 &&
+      mouseX <= width / 2 - 100 + 200 &&
       mouseY >= height / 2 - 30 &&
       mouseY <= height / 2 - 30 + 50
     ) {
       currentScene = "game_3";
     }
     if (
-      mouseX >= width / 2 - 150 &&
-      mouseX <= width / 2 - 150 + 200 &&
+      mouseX >= width / 2 - 100 &&
+      mouseX <= width / 2 - 100 + 200 &&
       mouseY >= height / 2 + 70 &&
       mouseY <= height / 2 + 70 + 50
     ) {
       currentScene = "game_4";
     }
-    if (
-      mouseX >= 30 &&
-      mouseX <= 30 + 100 &&
-      mouseY >= height - 80 &&
-      mouseY <= height - 80 + 50
-    ) {
-      currentScene = "menu";
-    }
+    // if (
+    //   mouseX >= 30 &&
+    //   mouseX <= 30 + 100 &&
+    //   mouseY >= height - 80 &&
+    //   mouseY <= height - 80 + 50
+    // ) {
+    //   currentScene = "menu";
+    // }
   }
   if (
     currentScene === "game_1" ||
     currentScene === "game_2" ||
     currentScene === "game_3" ||
-    currentScene === "game_4" ||
-    currentScene === "menu"
+    currentScene === "game_4"
+    // ||currentScene === "menu"
   ) {
     if (
       mouseX >= 30 &&
