@@ -25,6 +25,7 @@ function setup() {
   drawSound = loadSound("games/assets/draw.mp3");
   sadSound = loadSound("games/assets/loserSound.wav");
   happySound = loadSound("games/assets/gameOverWinner.wav");
+  bubbleFont = loadFont("games/assets/bubbleFont.ttf");
 }
 
 function draw() {
@@ -64,7 +65,7 @@ function draw() {
       background(255, 255, 255);
       changeToWhiteBG = false;
     }
-    popTheBubbles(buzz, winnerSound, bubblePop, sadSound, happySound);
+    popTheBubbles(buzz, winnerSound, bubblePop, sadSound, happySound, bubbleFont);
   }
 
   // fill("black");
