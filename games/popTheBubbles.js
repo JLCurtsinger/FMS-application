@@ -1,11 +1,8 @@
-// reminder: fix the exit and info buttons to where they dont make any sound when clicked. 
-
-const bubbleVars = {
+ const bubbleVars = {
   mousePressedTrue: false,
   firstPoint: false,
   secondPoint: false,
   thirdPoint: false,
-  // i: 0,
   bubbles: [],
   numBubbles: 15, // number of bubbles to display
   score: 0,
@@ -196,6 +193,7 @@ const infoButton = () => {
   }
 
   if (showInfo) {
+    background(201, 240, 255);
     fill("lightgray");
     rect(windowWidth / 2 - 400, windowHeight / 2 - 200, 800, 400);
     fill("black");
