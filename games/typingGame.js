@@ -88,7 +88,7 @@ const typingGame = (bell, wrongInput) => {
 
   text("Highscore: ", windowWidth / 2 + 100, windowHeight / 1 / 8 - 50);
   textAlign(LEFT);
-  text(highScore, windowWidth / 2 + 300, windowHeight / 1 / 8 - 50);
+  text(highScore, windowWidth / 2 + 320, windowHeight / 1 / 8 - 50);
 
   textAlign(CENTER);
   text("Exit", windowWidth / 1 / 25, windowHeight / 1 / 8 - 50);
@@ -163,7 +163,7 @@ const typingGame = (bell, wrongInput) => {
   }
 
   //Info button
-  infoButton();
+  infoButtonTyping();
 };
 
 function keyTyped() {
@@ -313,7 +313,7 @@ const difficultyButtons = (initialDif) => {
   fill("black");
 };
 
-const infoButton = () => {
+const infoButtonTyping = () => {
   fill("#9AEFFF");
   textAlign(CENTER);
   textSize(40);
@@ -357,6 +357,10 @@ const infoButton = () => {
     ]);
     textParser(windowWidth / 4, windowHeight / 2 + 150, [
       ["You will lose points if prompt is not matched", "black"],
+    ]);
+
+    textParser(windowWidth / 4 + 500, windowHeight / 2 + 185, [
+      ["Author: Nikolay Kim", "black"],
     ]);
 
     if (

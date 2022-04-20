@@ -25,7 +25,10 @@ function setup() {
   drawSound = loadSound("games/assets/draw.mp3");
   sadSound = loadSound("games/assets/loserSound.wav");
   happySound = loadSound("games/assets/gameOverWinner.wav");
-  bubbleFont = loadFont("games/assets/bubbleFont.ttf");
+  // Click and drag sounds
+  // sound_1 = loadSound("Asset/games_assets_bell.mp3");
+  // sound_2 = loadSound("Asset/games_assets_wrong.wav");
+  sound_3 = loadSound("games/assets/gameOverWinner.wav");
 }
 
 function draw() {
@@ -58,14 +61,21 @@ function draw() {
       background(255, 255, 255);
       changeToWhiteBG = false;
     }
-    clickAndDrag(bell, wrongInput);
+    clickAndDrag(bell, wrongInput, sound_3);
   }
   if (currentScene === "game_4") {
     if (changeToWhiteBG) {
       background(255, 255, 255);
       changeToWhiteBG = false;
     }
-    popTheBubbles(buzz, winnerSound, bubblePop, sadSound, happySound, bubbleFont);
+    popTheBubbles(
+      buzz,
+      winnerSound,
+      bubblePop,
+      sadSound,
+      happySound,
+      bubbleFont
+    );
   }
 
   // fill("black");
