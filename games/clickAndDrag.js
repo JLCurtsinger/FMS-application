@@ -6,14 +6,15 @@ let Score_lvl_2 = 0;
 let high_score = 0;
 let message = "Start from the yellow circle and follow the line";
 var level1pt5on = false; //This is technically level two
-var level2on = false; //This is technically level three
-var level1on = true;
+var level2on = true; //This is technically level three
+var level1on = false;
 var outro_on = false;
 var showInfoClickAndDrag;
-let x = 0; //Loop variable for the sound
 let sound_1;
 let sound_2;
 let sound_3;
+let sound_3_play = true;
+let sound_2_play = true;
 
 const clickAndDrag = (sound_1p, sound_2p, sound_3p) => {
   sound_1 = sound_1p;
@@ -227,6 +228,7 @@ function lvl_2() {
       mouseY >= windowHeight / 4 + 90 &&
       mouseY <= windowHeight / 1.75 + 70
     ) {
+      sound_2_play = true;
       fill("#3EB489");
       rect(
         windowWidth / 4,
@@ -240,8 +242,11 @@ function lvl_2() {
         circle(windowWidth / 2, windowHeight / 2, 50);
       }
     } else {
-      if (!sound_2.isPlaying()) {
-        sound_2.play();
+      if (sound_2_play) {
+        if (!sound_2.isPlaying()) {
+          sound_2.play();
+        }
+        sound_2_play = false;
       }
 
       message = "You are out of bounds";
@@ -254,6 +259,7 @@ function lvl_2() {
     if (mouseX <= windowWidth / 2 + 5 && mouseX >= windowWidth / 3.25 - 5) {
       if (mouseY <= windowHeight / 2 + 5 && mouseY >= windowHeight / 2 - 5) {
         fill("#3EB489");
+        sound_2_play = true;
         rect(
           windowWidth / 4,
           windowHeight / 4,
@@ -278,6 +284,7 @@ function lvl_2() {
     if (mouseX >= windowWidth / 2 && mouseX <= windowWidth / 2 + 70) {
       if (mouseY >= windowHeight / 2 && mouseY <= windowHeight / 2 + 70) {
         fill("#3EB489");
+        sound_2_play = true;
         rect(
           windowWidth / 4,
           windowHeight / 4,
@@ -307,6 +314,7 @@ function lvl_2() {
         mouseY <= windowHeight / 2 + 70 + 5 &&
         mouseY >= windowHeight / 3.5 + 70 - 5
       ) {
+        sound_2_play = true;
         fill("#3EB489");
         rect(
           windowWidth / 4,
@@ -337,6 +345,7 @@ function lvl_2() {
         mouseY >= windowHeight / 2.75 - 5 &&
         mouseY <= windowHeight / 3.5 + 70 + 5
       ) {
+        sound_2_play = true;
         fill("#3EB489");
         rect(
           windowWidth / 4,
@@ -367,6 +376,7 @@ function lvl_2() {
         mouseY >= windowHeight / 2.75 + 50 - 5 &&
         mouseY <= windowHeight / 2.35 + 5
       ) {
+        sound_2_play = true;
         fill("#3EB489");
         rect(
           windowWidth / 4,
@@ -394,6 +404,7 @@ function lvl_2() {
         mouseY <= windowHeight / 2.155 + 5 &&
         mouseY >= windowHeight / 2.17 - 5
       ) {
+        sound_2_play = true;
         fill("#3EB489");
         rect(
           windowWidth / 4,
@@ -421,6 +432,7 @@ function lvl_2() {
         mouseY >= windowHeight / 2.17 + 5 &&
         mouseY <= windowHeight / 1.55 - 5
       ) {
+        sound_2_play = true;
         fill("#3EB489");
         rect(
           windowWidth / 4,
@@ -448,6 +460,7 @@ function lvl_2() {
         mouseY >= windowHeight / 1.55 &&
         mouseY <= windowHeight / 2 + 140 - 5
       ) {
+        sound_2_play = true;
         fill("#3EB489");
         rect(
           windowWidth / 4,
@@ -478,6 +491,7 @@ function lvl_2() {
         mouseY <= windowHeight / 1.6 + 5 &&
         mouseY >= windowHeight / 1.7 - 5
       ) {
+        sound_2_play = true;
         fill("#3EB489");
         rect(
           windowWidth / 4,
@@ -505,6 +519,7 @@ function lvl_2() {
         mouseY <= windowHeight / 1.85 + 5 &&
         mouseY >= windowHeight / 1.85 - 5
       ) {
+        sound_2_play = true;
         fill("#3EB489");
         rect(
           windowWidth / 4,
@@ -532,6 +547,7 @@ function lvl_2() {
         mouseY <= windowHeight / 1.85 + 5 &&
         mouseY >= windowHeight / 1.85 - 5
       ) {
+        sound_2_play = true;
         fill("#3EB489");
         rect(
           windowWidth / 4,
@@ -553,13 +569,14 @@ function lvl_2() {
   }
   //What to do when mouse not pressed
   else {
+    sound_2_play = true;
     fill(19, 111, 209);
     rect(windowWidth / 4, windowHeight / 4, windowWidth / 2, windowHeight / 2);
     strokeWeight(10);
     fill("yellow");
     circle(windowWidth / 3.25, windowHeight / 2, 50);
     stroke("red");
-    message = "Start from the yellow circle and folow the line";
+    message = "Start from the yellow circle and follow the line";
   }
 
   //Line measurements
@@ -889,11 +906,11 @@ function level1pt5() {
 function outro() {
   sound_1.stop();
   sound_2.stop();
-  while (x < 100) {
+  if (sound_3_play) {
     if (!sound_3.isPlaying()) {
       sound_3.play();
+      sound_3_play = false;
     }
-    x++;
   }
   fill("purple");
   stroke("black");
@@ -932,34 +949,39 @@ const infoButtonClickAndDrag = () => {
     textSize(21);
     noStroke();
     text(
-      "Start from the Yellow Circle and go all the way to the end.",
+      "• Start from the Yellow Circle and go all the way to the end.",
       windowWidth / 2,
       windowHeight / 3
     );
     text(
-      "If the circle is white then you are going in the right direction.",
+      "• If the circle is white then you are going in the right direction.",
       windowWidth / 2,
       windowHeight / 3 + 35
     );
     text(
-      "If the rectangle goes red then it means you are at the wrong spot.",
+      "• If the rectangle goes red then it means you are at the wrong spot.",
       windowWidth / 2,
       windowHeight / 3 + 70
     );
     text(
-      "Total Score is the score from all the levels.",
+      "• Total Score is the score from all the levels.",
       windowWidth / 2,
       windowHeight / 3 + 105
     );
     text(
-      "Score is just the score that you get from that individual level that you are in right now",
+      "• Score is just the score that you get from that individual",
       windowWidth / 2,
       windowHeight / 3 + 140
     );
     text(
+      "level that you are in right now",
+      windowWidth / 2,
+      windowHeight / 3 + 170
+    );
+    text(
       "Good Luck in finishing all the levels",
       windowWidth / 2,
-      windowHeight / 3 + 200
+      windowHeight / 3 + 215
     );
 
     text("Lead Dev: Patrick Premkumar", windowWidth / 2, windowHeight / 1.5);

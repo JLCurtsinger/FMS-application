@@ -60,7 +60,7 @@ function draw() {
       background(240, 250, 255);
       changeToWhiteBG = false;
     }
-    clickAndDrag(bell, wrongInput, sound_3);
+    clickAndDrag(bell, buzz, sound_3);
   }
   if (currentScene === "game_4") {
     if (changeToWhiteBG) {
