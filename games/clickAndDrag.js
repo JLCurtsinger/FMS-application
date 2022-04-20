@@ -6,8 +6,8 @@ let Score_lvl_2 = 0;
 let high_score = 0;
 let message = "Start from the yellow circle and follow the line";
 var level1pt5on = false; //This is technically level two
-var level2on = true; //This is technically level three
-var level1on = false;
+var level2on = false; //This is technically level three
+var level1on = true;
 var outro_on = false;
 var showInfoClickAndDrag;
 let sound_1;
