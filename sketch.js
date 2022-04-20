@@ -26,9 +26,8 @@ function setup() {
   sadSound = loadSound("games/assets/loserSound.wav");
   happySound = loadSound("games/assets/gameOverWinner.wav");
   // Click and drag sounds
-  // sound_1 = loadSound("Asset/games_assets_bell.mp3");
-  // sound_2 = loadSound("Asset/games_assets_wrong.wav");
   sound_3 = loadSound("games/assets/gameOverWinner.wav");
+  bubbleFont = loadFont("games/assets/bubbleFont.ttf");
 }
 
 function draw() {
@@ -44,28 +43,28 @@ function draw() {
   // }
   if (currentScene === "game_1") {
     if (changeToWhiteBG) {
-      background(255, 255, 255);
+      background(240, 250, 255);
       changeToWhiteBG = false;
     }
     drawShape(ding, win, selectSound, drawSound);
   }
   if (currentScene === "game_2") {
     if (changeToWhiteBG) {
-      background(255, 255, 255);
+      background(240, 250, 255);
       changeToWhiteBG = false;
     }
     typingGame(bell, wrongInput);
   }
   if (currentScene === "game_3") {
     if (changeToWhiteBG) {
-      background(255, 255, 255);
+      background(240, 250, 255);
       changeToWhiteBG = false;
     }
     clickAndDrag(bell, wrongInput, sound_3);
   }
   if (currentScene === "game_4") {
     if (changeToWhiteBG) {
-      background(255, 255, 255);
+      background(240, 250, 255);
       changeToWhiteBG = false;
     }
     popTheBubbles(
