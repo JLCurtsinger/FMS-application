@@ -43,7 +43,7 @@ function draw() {
   // }
   if (currentScene === "game_1") {
     if (changeToWhiteBG) {
-      background(240, 250, 255);
+      background("White");
       changeToWhiteBG = false;
     }
     drawShape(ding, win, selectSound, drawSound);
