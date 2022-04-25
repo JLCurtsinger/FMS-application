@@ -338,7 +338,7 @@ const infoButtonTyping = () => {
     text("✕", windowWidth / 2 + 350, windowHeight / 2 - 150);
     textSize(25);
     text("How To Play", windowWidth / 2, windowHeight / 2 - 150);
-    textAlign(LEFT);
+    textAlign(CENTER);
     text("Match given prompt", windowWidth / 4, windowHeight / 2 - 100);
 
     textParser(windowWidth / 4, windowHeight / 2 - 50, [
