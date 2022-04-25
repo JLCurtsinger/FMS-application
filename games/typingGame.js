@@ -338,28 +338,28 @@ const infoButtonTyping = () => {
     text("✕", windowWidth / 2 + 350, windowHeight / 2 - 150);
     textSize(25);
     text("How To Play", windowWidth / 2, windowHeight / 2 - 150);
-    textAlign(CENTER);
-    text("Match given prompt", windowWidth / 4, windowHeight / 2 - 100);
+    textAlign(LEFT);
+    text("Match given prompt", windowWidth / 3.5, windowHeight / 2 - 100);
 
-    textParser(windowWidth / 4, windowHeight / 2 - 50, [
+    textParser(windowWidth / 3.5, windowHeight / 2 - 50, [
       ["Correctly typed letters will be in ", "black"],
       ["green", "green"],
     ]);
-    textParser(windowWidth / 4, windowHeight / 2, [
+    textParser(windowWidth / 3.5, windowHeight / 2, [
       ["Incorrectly typed letters will be in ", "black"],
       ["red ", "red"],
     ]);
-    textParser(windowWidth / 4, windowHeight / 2 + 50, [
+    textParser(windowWidth / 3.5, windowHeight / 2 + 50, [
       ['After you finish typing, press "Enter" to submit', "black"],
     ]);
-    textParser(windowWidth / 4, windowHeight / 2 + 100, [
+    textParser(windowWidth / 3.5, windowHeight / 2 + 100, [
       ["You will be awarded points for each successful prompt", "black"],
     ]);
-    textParser(windowWidth / 4, windowHeight / 2 + 150, [
+    textParser(windowWidth / 3.5, windowHeight / 2 + 150, [
       ["You will lose points if prompt is not matched", "black"],
     ]);
 
-    textParser(windowWidth / 4 + 500, windowHeight / 2 + 185, [
+    textParser(windowWidth / 3.5 + 400, windowHeight / 2 + 185, [
       ["Author: Nikolay Kim", "black"],
     ]);
 
