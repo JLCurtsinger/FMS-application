@@ -58,6 +58,7 @@ const myVars = {
 };
 
 const drawShape = (ding, win, selectSound, drawSound) => {
+
   mainScreenSetup();
   playArea();
   textOne();
@@ -108,7 +109,9 @@ function mainScreenSetup() {
   rect(0, 0, windowWidth, windowHeight / 1 / 8);
   //Restart Button
   fill("white");
-  rect(0,windowHeight / 1 / 8,windowWidth/4, windowHeight);
+  rect(windowWidth / 1.34, windowHeight / 4.3, windowWidth / 9, windowHeight / 1.2)
+  rect(windowWidth / 4, windowHeight / 4.4, windowWidth, windowHeight / 40)
+  rect(0,windowHeight / 1 / 8,windowWidth / 4, windowHeight);
   textAlign(CENTER);
   textSize(40);
   text("Score: ", windowWidth / 2 - 10, windowHeight / 1 / 8 - 50);
@@ -241,10 +244,10 @@ function checkForDrawing1() {
     }
   }
   if (
-    mouseX >= windowWidth / 2.31 + 160 &&
-    mouseX <= windowWidth / 2.3 + 170 &&
-    mouseY >= windowHeight / 1.5 - 150 &&
-    mouseY <= windowHeight / 1.5 - 120 &&
+    mouseX >= windowWidth / 2.31 + 180 &&
+    mouseX <= windowWidth / 2.3 + 180 &&
+    mouseY >= windowHeight / 1.5 - 120 &&
+    mouseY <= windowHeight / 1.5 - 100 &&
     mouseIsPressed
   ) {
     myVars.sixthPoint = true;
@@ -254,9 +257,9 @@ function checkForDrawing1() {
     }
   }
   if (
-    mouseX >= windowWidth / 2.1 - 20 &&
+    mouseX >= windowWidth / 2.1 - 30 &&
     mouseX <= windowWidth / 2.1 + 10&&
-    mouseY >= windowHeight / 2 - 20&&
+    mouseY >= windowHeight / 2 - 30&&
     mouseY <= windowHeight / 2 + 10&&
     mouseIsPressed
   ) {
@@ -267,10 +270,10 @@ function checkForDrawing1() {
     }
   }
   if (
-    mouseX >= windowWidth / 1.9 - 20 &&
-    mouseX <= windowWidth / 1.9 + 10&&
-    mouseY >= windowHeight / 2 - 20&&
-    mouseY <= windowHeight / 2 + 10&&
+    mouseX >= windowWidth / 1.9 - 30 &&
+    mouseX <= windowWidth / 1.9 + 20&&
+    mouseY >= windowHeight / 2 - 30&&
+    mouseY <= windowHeight / 2 + 20&&
     mouseIsPressed
   ) {
     myVars.eigthPoint = true;
@@ -285,7 +288,7 @@ function checkForDrawing1() {
     myVars.thirdPoint == true &&
     myVars.fourthPoint == true &&
     myVars.fifthPoint == true &&
-    myVars.sixthPoint == true &&
+    
     myVars.seventhPoint == true &&
     myVars.eigthPoint == true
   ) {
@@ -295,8 +298,8 @@ function checkForDrawing1() {
 function checkForDrawing2(){
   if(
     mouseX >= windowWidth / 2 - 10 &&
-    mouseX <= windowWidth / 2 + 20 &&
-    mouseY <= windowHeight / 3 + 20 &&
+    mouseX <= windowWidth / 2 + 40 &&
+    mouseY <= windowHeight / 3 + 40 &&
     mouseY >= windowHeight / 3 - 10 &&
 
     mouseIsPressed
@@ -309,8 +312,8 @@ function checkForDrawing2(){
   }
   if(
     mouseX >= windowWidth / 2 - 10 &&
-    mouseX <= windowWidth / 2 + 30 &&
-    mouseY <= windowHeight / 1.5 + 30 &&
+    mouseX <= windowWidth / 2 + 40 &&
+    mouseY <= windowHeight / 1.5 + 40 &&
     mouseY >= windowHeight / 1.5 - 10 &&
     mouseIsPressed
   ){
@@ -322,8 +325,8 @@ function checkForDrawing2(){
   }
   if(
     mouseX >= windowWidth / 2.4 - 10 &&
-    mouseX <= windowWidth / 2.4 + 30 &&
-    mouseY <= windowHeight / 2 + 30 &&
+    mouseX <= windowWidth / 2.4 + 40 &&
+    mouseY <= windowHeight / 2 + 40 &&
     mouseY >= windowHeight / 2 - 10 &&
     mouseIsPressed
   ){
@@ -335,8 +338,8 @@ function checkForDrawing2(){
   }
   if(
     mouseX >= windowWidth / 1.75 - 10 &&
-    mouseX <= windowWidth / 1.75 + 30 &&
-    mouseY <= windowHeight / 2 + 30 &&
+    mouseX <= windowWidth / 1.75 + 40 &&
+    mouseY <= windowHeight / 2 + 40 &&
     mouseY >= windowHeight / 2 - 10 &&
     mouseIsPressed
   ){
@@ -348,8 +351,8 @@ function checkForDrawing2(){
   }
   if(
     mouseX >= windowWidth / 1.8 - 10 &&
-    mouseX <= windowWidth / 1.8 + 30 &&
-    mouseY <= windowHeight / 1.6 + 30 &&
+    mouseX <= windowWidth / 1.8 + 40 &&
+    mouseY <= windowHeight / 1.6 + 40 &&
     mouseY >= windowHeight / 1.6 - 10 &&
     mouseIsPressed
   ){
@@ -361,8 +364,8 @@ function checkForDrawing2(){
   }
   if(
     mouseX >= windowWidth / 2.2 - 10 &&
-    mouseX <= windowWidth / 2.2 + 30 &&
-    mouseY <= windowHeight / 1.6 + 30 &&
+    mouseX <= windowWidth / 2.2 + 40 &&
+    mouseY <= windowHeight / 1.6 + 40 &&
     mouseY >= windowHeight / 1.6 - 10 &&
     mouseIsPressed
   ){
@@ -373,10 +376,10 @@ function checkForDrawing2(){
     }
   }
   if(
-    mouseX >= windowWidth / 2.2 - 20 &&
-    mouseX <= windowWidth / 2.2 + 30 &&
-    mouseY <= windowHeight / 2.6 + 30 &&
-    mouseY >= windowHeight / 2.6 - 10 &&
+    mouseX >= windowWidth / 2.2 - 40 &&
+    mouseX <= windowWidth / 2.2 + 40 &&
+    mouseY <= windowHeight / 2.6 + 40 &&
+    mouseY >= windowHeight / 2.6 - 40 &&
     mouseIsPressed
   ){
     myVars.topLeft = true;
@@ -387,8 +390,8 @@ function checkForDrawing2(){
   }
   if(
     mouseX >= windowWidth / 1.8 - 10 &&
-    mouseX <= windowWidth / 1.8 + 30 &&
-    mouseY <= windowHeight / 2.6 + 30 &&
+    mouseX <= windowWidth / 1.8 + 40 &&
+    mouseY <= windowHeight / 2.6 + 40 &&
     mouseY >= windowHeight / 2.6 - 10 &&
     mouseIsPressed
   ){
